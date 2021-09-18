@@ -24,12 +24,16 @@ const customTheme = {
   },
   colors: {
     ...theme.colors,
-    white: "#dadada",
+    white: "#ffffff",
     purple: {
       ...theme.colors.purple,
+      500: "#8257e6",
     },
     gray: {
       ...theme.colors.gray,
+      100: "#dadada",
+      700: "#202024",
+      800: "#121214",
     },
   },
 };
