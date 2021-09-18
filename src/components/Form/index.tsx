@@ -14,6 +14,7 @@ const Form: React.FC = ({ children }: IProps) => {
       p={5}
       flexDir="column"
       backgroundColor="gray.700"
+      border="2px solid #8257e6"
     >
       {children}
     </Flex>
