@@ -3,12 +3,14 @@ import React, { ReactNode } from "react";
 
 interface IProps {
   children: ReactNode;
+  onSubmit: any;
 }
 
-const Form: React.FC = ({ children }: IProps) => {
+const Form: React.FC<IProps> = ({ children, onSubmit }) => {
   return (
     <Flex
       as="form"
+      onSubmit={onSubmit}
       h="80%"
       w="60%"
       p={5}
