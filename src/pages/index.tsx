@@ -15,6 +15,7 @@ import Main from "../components/Main";
 export default function secondForm() {
   const router = useRouter();
   const [redirect, setRedirect] = useState(false);
+
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [cpf, setCpf] = useState();
