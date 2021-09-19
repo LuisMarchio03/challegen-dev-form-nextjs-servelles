@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { GetServerSideProps } from "next";
+import Link from "next/link";
 
 import axios from "axios";
 
@@ -37,7 +38,7 @@ export default function Previews({ data }: IResults) {
             backgroundColor="gray.700"
             border="0"
             borderRadius="0"
-            placeholder="Exemplo: Luis"
+            placeholder="Buscar pelo nome. Exemplo: Luis"
             value={search}
             onChange={(e: any) => setSearch(e.target.value)}
           />
@@ -48,6 +49,7 @@ export default function Previews({ data }: IResults) {
             backgroundColor="whatsapp.600"
             _hover={{ backgroundColor: "whatsapp.700" }}
             onClick={handleSearch}
+            cursor="no-drop"
           >
             Buscar
           </Button>

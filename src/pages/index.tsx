@@ -1,19 +1,24 @@
 import { useState, FormEvent } from "react";
+import { useRouter } from "next/router";
+
 import axios from "axios";
 
 import { Button } from "@chakra-ui/button";
 import { Input } from "@chakra-ui/input";
 import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Select } from "@chakra-ui/select";
+import { Spinner } from "@chakra-ui/spinner";
 
 import Form from "../components/Form";
 import Main from "../components/Main";
 
 export default function secondForm() {
+  const router = useRouter();
+  const [redirect, setRedirect] = useState(false);
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [cpf, setCpf] = useState();
-  const [genre, setGenre] = useState();
+  const [genre, setGenre] = useState("Prefiro não dizer");
 
   const formSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -24,6 +29,8 @@ export default function secondForm() {
       cpf: cpf,
       genre: genre,
     });
+    setRedirect(true);
+    router.push("/previews");
   };
 
   return (
@@ -88,6 +95,9 @@ export default function secondForm() {
             value={genre}
             onChange={(event: any) => setGenre(event.target.value)}
           >
+            <option style={{ color: "#121214" }} value="Prefiro não dizer">
+              Prefiro não dizer
+            </option>
             <option style={{ color: "#121214" }} value="Masculino">
               Masculino
             </option>
@@ -96,23 +106,40 @@ export default function secondForm() {
             </option>
           </Select>
         </Box>
-
-        <Flex
-          mt={6}
-          mb={6}
-          alignContent="center"
-          justifyContent="center"
-          w="100%"
-        >
-          <Button
-            type="submit"
-            w="40%"
-            backgroundColor="whatsapp.500"
-            _hover={{ backgroundColor: "whatsapp.600" }}
+        {redirect === false ? (
+          <Flex
+            mt={6}
+            mb={6}
+            alignContent="center"
+            justifyContent="center"
+            w="100%"
           >
-            Enviar
-          </Button>
-        </Flex>
+            <Button
+              type="submit"
+              w="40%"
+              backgroundColor="whatsapp.500"
+              _hover={{ backgroundColor: "whatsapp.600" }}
+            >
+              Enviar
+            </Button>
+          </Flex>
+        ) : (
+          <Flex
+            mt={6}
+            mb={6}
+            alignContent="center"
+            justifyContent="center"
+            w="100%"
+          >
+            <Spinner
+              thickness="4px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="blue.500"
+              size="xl"
+            />
+          </Flex>
+        )}
       </Form>
     </Main>
   );
